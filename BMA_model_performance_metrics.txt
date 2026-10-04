@@ -1,0 +1,62 @@
+IMD New Delhi/tmin: selected grid (28.50, 77.50) with 100.0% valid coverage.
+IMD Mumbai/tmin: selected grid (19.50, 72.50) with 100.0% valid coverage.
+IMD Bengaluru/tmin: selected grid (12.50, 77.50) with 100.0% valid coverage.
+IMD Kolkata/tmin: selected grid (22.50, 88.50) with 100.0% valid coverage.
+IMD Chennai/tmin: selected grid (13.50, 80.50) with 100.0% valid coverage.
+IMD Ahmedabad/tmin: selected grid (23.50, 72.50) with 100.0% valid coverage.
+IMD Hyderabad/tmin: selected grid (17.50, 78.50) with 100.0% valid coverage.
+IMD Pune/tmin: selected grid (18.50, 73.50) with 100.0% valid coverage.
+IMD Jaipur/tmin: selected grid (26.50, 75.50) with 100.0% valid coverage.
+IMD Lucknow/tmin: selected grid (26.50, 80.50) with 100.0% valid coverage.
+IMD New Delhi/tmax: selected grid (28.50, 77.50) with 100.0% valid coverage.
+IMD Mumbai/tmax: selected grid (19.50, 72.50) with 100.0% valid coverage.
+IMD Bengaluru/tmax: selected grid (12.50, 77.50) with 100.0% valid coverage.
+IMD Kolkata/tmax: selected grid (22.50, 88.50) with 100.0% valid coverage.
+IMD Chennai/tmax: selected grid (13.50, 80.50) with 100.0% valid coverage.
+IMD Ahmedabad/tmax: selected grid (23.50, 72.50) with 100.0% valid coverage.
+IMD Hyderabad/tmax: selected grid (17.50, 78.50) with 100.0% valid coverage.
+IMD Pune/tmax: selected grid (18.50, 73.50) with 100.0% valid coverage.
+IMD Jaipur/tmax: selected grid (26.50, 75.50) with 100.0% valid coverage.
+IMD Lucknow/tmax: selected grid (26.50, 80.50) with 100.0% valid coverage.
+
+=== TEMPERATURE BMA EVALUATION ===
+Within-tolerance threshold: ±2 °C
+Location         N   AIFS MAE    GFS MAE    BMA MAE   BMA RMSE      Bias    Acc* %   90% Cov
+--------------------------------------------------------------------------------------------
+New Delhi       59      0.809      3.068      0.860      1.062    -0.664      93.2      89.8
+Mumbai          59      0.852      0.525      0.610      0.724     0.446     100.0      96.6
+Bengaluru       59      0.828      1.665      0.799      0.958     0.539      96.6      78.0
+Kolkata         59      0.468      0.703      0.591      0.732     0.184      98.3      94.9
+Chennai         59      0.898      0.928      1.014      1.289     0.883      89.8      67.8
+Ahmedabad       59      1.556      2.642      0.526      0.751     0.085      94.9      94.9
+Hyderabad       59      0.882      2.071      0.638      0.799     0.233      98.3      94.9
+Pune            59      2.350      2.872      0.689      0.793    -0.634     100.0      94.9
+Jaipur          59      1.220      0.711      0.999      1.238    -0.790      88.1      91.5
+Lucknow         59      1.001      1.737      0.606      0.837     0.333      96.6      91.5
+* Acc% = percentage within chosen tolerance; 90% Cov = empirical coverage of the BMA central 90% interval.
+IMD New Delhi/rain: selected grid (28.50, 77.25) with 100.0% valid coverage.
+IMD Mumbai/rain: selected grid (19.00, 73.00) with 100.0% valid coverage.
+IMD Bengaluru/rain: selected grid (13.00, 77.50) with 100.0% valid coverage.
+IMD Kolkata/rain: selected grid (22.50, 88.25) with 100.0% valid coverage.
+IMD Chennai/rain: selected grid (13.25, 80.25) with 100.0% valid coverage.
+IMD Ahmedabad/rain: selected grid (23.00, 72.50) with 100.0% valid coverage.
+IMD Hyderabad/rain: selected grid (17.50, 78.50) with 100.0% valid coverage.
+IMD Pune/rain: selected grid (18.50, 73.75) with 100.0% valid coverage.
+IMD Jaipur/rain: selected grid (27.00, 75.75) with 100.0% valid coverage.
+IMD Lucknow/rain: selected grid (26.75, 81.00) with 100.0% valid coverage.
+
+=== PRECIPITATION BMA EVALUATION ===
+Within-tolerance threshold: ±5 mm
+Location         N   AIFS MAE    GFS MAE    BMA MAE   BMA RMSE      Bias    Acc* %   90% Cov
+--------------------------------------------------------------------------------------------
+New Delhi       61      0.442      0.427      0.413      0.707     1.588      96.7      98.4
+Mumbai          60      1.294      2.371      1.087      2.231     2.366      90.0      95.0
+Bengaluru       59      1.748      1.845      1.578      2.834     0.624      89.8      94.9
+Kolkata         59      2.427      2.401      2.139      3.022     2.107      83.1      98.3
+Chennai         60      6.863      7.347      5.308      7.029    -2.075      58.3      93.3
+Ahmedabad       61      0.670      1.128      0.534      0.928     1.114      93.4     100.0
+Hyderabad       61      1.267      1.315      1.021      2.085     1.391      96.7      98.4
+Pune            61      1.104      1.077      1.025      2.102     1.123      93.4      95.1
+Jaipur          59      0.637      0.687      0.532      0.913     0.731      98.3      98.3
+Lucknow         58      0.795      1.149      0.658      1.368     1.400      96.6     100.0
+* Acc% = percentage within chosen tolerance; 90% Cov = empirical coverage of the BMA central 90% interval.

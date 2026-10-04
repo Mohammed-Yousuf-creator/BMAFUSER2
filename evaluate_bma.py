@@ -26,11 +26,25 @@ from bma_core import _working_transform, _inverse_transform, _component_paramete
 
 
 def expected_component(model, aifs, gfs):
-    m1,s1,m2,s2,w1,w2 = _component_parameters(model,float(aifs),float(gfs))
-    if model.variable in ("tmax","tmin"):
-        return float(w1*m1+w2*m2)
-    return max(0.0,float(w1*(math.exp(m1+0.5*s1*s1)-1)+w2*(math.exp(m2+0.5*s2*s2)-1)))
+    m1, s1, m2, s2 = _component_parameters(
+        model,
+        float(aifs),
+        float(gfs),
+    )
 
+    w1 = model.weight_aifs
+    w2 = model.weight_gfs
+
+    if model.variable in ("tmax", "tmin"):
+        return float(w1 * m1 + w2 * m2)
+
+    return max(
+        0.0,
+        float(
+            w1 * (math.exp(m1 + 0.5 * s1 * s1) - 1.0)
+            + w2 * (math.exp(m2 + 0.5 * s2 * s2) - 1.0)
+        ),
+    )
 
 def temperature_samples(models, location, a_tmax,g_tmax,a_tmin,g_tmin,n=60000,seed=1234):
     rng = np.random.default_rng(seed)
@@ -106,10 +120,52 @@ def main():
     if a.variable in ('temperature','all'):
         rows=evaluate_temperature(models,load_temperature_eval(Path(a.aifs_dir).resolve(),Path(a.gfs_dir).resolve(),Path(a.imd_dir).resolve(),start,end)); results+=rows; print_rows(rows)
     if a.variable in ('precipitation','all'):
-        adf=load_precip_forecast_records(Path(a.aifs_dir).resolve(),'AIFS'); gdf=load_precip_forecast_records(Path(a.gfs_dir).resolve(),'GFS')
-        af=pd.DataFrame({'target_date':[r.valid_time.normalize() for r in adf],'location':[r.location for r in adf],'aifs':[r.value for r in adf]}); gf=pd.DataFrame({'target_date':[r.valid_time.normalize() for r in gdf],'location':[r.location for r in gdf],'gfs':[r.value for r in gdf]})
-        df=af.merge(gf,on=['target_date','location'],how='inner'); df=df[(df.target_date>=start)&(df.target_date<=end)]
-        obs=load_imd_series(Path(a.imd_dir).resolve(),'precipitation',df.target_date.tolist()); df['observed']=[obs.get((r.location,r.target_date),np.nan) for r in df.itertuples()]; df=df.dropna(subset=['aifs','gfs','observed']); rows=evaluate_precip(models,df); results+=rows; print_rows(rows)
+        adf = load_precip_forecast_records(
+            Path(a.aifs_dir).resolve(),
+            'AIFS'
+        )
+        gdf = load_precip_forecast_records(
+            Path(a.gfs_dir).resolve(),
+            'GFS'
+        )
+
+        af = adf.rename(columns={'precipitation': 'aifs'})[
+            ['target_date', 'location', 'aifs']
+        ]
+
+        gf = gdf.rename(columns={'precipitation': 'gfs'})[
+            ['target_date', 'location', 'gfs']
+        ]
+
+        df = af.merge(
+            gf,
+            on=['target_date', 'location'],
+            how='inner'
+        )
+
+        df = df[
+            (df.target_date >= start) &
+            (df.target_date <= end)
+        ]
+
+        obs = load_imd_series(
+            Path(a.imd_dir).resolve(),
+            'precipitation',
+            df.target_date.tolist()
+        )
+
+        df['observed'] = [
+            obs.get((r.location, r.target_date), np.nan)
+            for r in df.itertuples()
+        ]
+
+        df = df.dropna(
+            subset=['aifs', 'gfs', 'observed']
+        )
+
+        rows = evaluate_precip(models, df)
+        results += rows
+        print_rows(rows)
     overlap=False
     for var in models:
         for m in models[var].values():
