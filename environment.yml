@@ -1,0 +1,11 @@
+name: climafuse-weather
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - esmf
+  - esmpy
+  - xesmf
+  - pip
+  - pip:
+      - -r requirements.txt
